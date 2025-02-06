@@ -31,6 +31,26 @@ const svgIconVariants = {
   },
 };
 
+const circleVariants = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
 const App = () => {
   const { scrollYProgress: completionProgress } = useScroll();
 
@@ -212,6 +232,23 @@ const App = () => {
           Have fun playing with Framer Motion. It is a ver powerful library,
           when used properly. Add some life to your websites.
         </motion.p>
+      </section>
+
+      <section className="w-[100vw] h-[100vh] overflow-hidden flex justify-center items-center bg-[#BB08F7]">
+        <motion.div
+          variants={circleVariants}
+          initial="hidden"
+          animate="visible"
+          className="w-[150px] h-[150px] grid grid-cols-2 gap-4 rounded-[50px] p-4 bg-[#e731c9] overflow-hidden"
+        >
+          {[0, 1, 2, 3].map((index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-full"
+              variants={item}
+            />
+          ))}
+        </motion.div>
       </section>
     </div>
   );
