@@ -234,21 +234,24 @@ const App = () => {
         </motion.p>
       </section>
 
-      <section className="w-[100vw] h-[100vh] overflow-hidden flex justify-center items-center bg-[#BB08F7]">
-        <motion.div
-          variants={circleVariants}
-          initial="hidden"
-          animate="visible"
-          className="w-[150px] h-[150px] grid grid-cols-2 gap-4 rounded-[50px] p-4 bg-[#e731c9] overflow-hidden"
-        >
-          {[0, 1, 2, 3].map((index) => (
-            <motion.div
-              key={index}
-              className="bg-white rounded-full"
-              variants={item}
-            />
-          ))}
-        </motion.div>
+      <section className="flex gap-10">
+        <div className="w-[50vw] h-[40vh] overflow-hidden flex rounded-[5px] justify-center items-center bg-[#BB08F7]">
+          <motion.div
+            variants={circleVariants}
+            initial="hidden"
+            animate="visible"
+            className="w-[150px] h-[150px] grid grid-cols-2 gap-4 rounded-[50px] p-4 bg-[#e731c9] overflow-hidden"
+          >
+            {[0, 1, 2, 3].map((index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-full"
+                variants={item}
+              />
+            ))}
+          </motion.div>
+        </div>
+        <motion.div className="w-[50vw] h-[40vh] bg-[#ff0088] rounded-[5px]"></motion.div>
       </section>
     </div>
   );
