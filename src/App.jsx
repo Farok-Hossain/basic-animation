@@ -5,6 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { useState } from "react";
 import { useEffect, useRef } from "react";
 
 const gridContainerVariants = {
@@ -51,7 +52,47 @@ const item = {
   },
 };
 
+const initialOrder = ["#ff0088", "#dd00ee", "#9911ff", "#0d63f8"];
+
+/**
+ * ==============   Utils   ================
+ */
+function shuffle([...array]) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+/**
+ * ==============   Styles   ================
+ */
+
+const spring = {
+  type: "spring",
+  damping: 20,
+  stiffness: 300,
+};
+
+const container = {
+  listStyle: "none",
+  padding: 0,
+  margin: 0,
+  position: "relative",
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 10,
+  width: 300,
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+const item2 = {
+  width: 100,
+  height: 100,
+  borderRadius: "10px",
+};
+
 const App = () => {
+  const [order, setOrder] = useState(initialOrder);
   const { scrollYProgress: completionProgress } = useScroll();
 
   const containerRef = useRef(null);
@@ -81,160 +122,167 @@ const App = () => {
     }
   }, [isInView]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => setOrder(shuffle(order)), 1000);
+    return () => clearTimeout(timeout);
+  }, [order]);
+
   return (
-    <div className="flex flex-col gap-10 overflow-x-hidden">
-      <motion.section
-        variants={{ gridContainerVariants }}
-        initial="hidden"
-        animate="show"
-        className="grid grid-cols-3 p-10 gap-10"
-      >
-        <motion.div
-          variants={{ gridSquareVariants }}
-          className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
+    <div>
+      <div className="flex flex-col gap-10 overflow-x-hidden">
+        <motion.section
+          variants={{ gridContainerVariants }}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-3 p-10 gap-10"
         >
           <motion.div
-            className="w-20 h-20 bg-slate-100 rounded-lg"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          />
-          <motion.div
-            className="w-20 h-20 bg-slate-100 rounded-full"
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          />
-        </motion.div>
-        <motion.div
-          variants={{ gridSquareVariants }}
-          className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
-        >
-          <motion.div
-            className="w-1/3 h-1/3 shadow-md bg-rose-400"
-            animate={{
-              scale: [1, 2, 2, 1],
-              rotate: [0, 90, 90, 0],
-              borderRadius: ["10%", "10%", "50%", "10%"],
-            }}
-            transition={{
-              duration: 5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatDelay: 1,
-            }}
-          />
-        </motion.div>
-        <motion.div
-          variants={{ gridSquareVariants }}
-          className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
-        >
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: "#d1d5db",
-              color: "black",
-            }}
-            transition={{ bounceDamping: 10, bounceStiffness: 500 }}
-            className="bg-emerald-600 w-1/2 py-4  rounded-lg text-2xl text-gray-100 font-light tracking-wide"
+            variants={{ gridSquareVariants }}
+            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
           >
-            Subscribe
-          </motion.button>
-        </motion.div>
-        <motion.div
-          variants={{ gridSquareVariants }}
-          className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
-        >
-          <motion.div
-            className="w-1/3 h-1/3 bg-orange-500 rounded-3xl cursor-grab"
-            drag
-            dragConstraints={{
-              top: -125,
-              right: 125,
-              bottom: 125,
-              left: -125,
-            }}
-            dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
-          />
-        </motion.div>
-        <motion.div
-          variants={{ gridSquareVariants }}
-          className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
-        >
-          <motion.div className="w-40 aspect-square bg-gray-50/20 rounded-xl">
             <motion.div
-              className="w-full bg-gray-400 rounded-xl h-full origin-bottom"
-              style={{ scaleY: completionProgress }}
+              className="w-20 h-20 bgSlate-100 rounded-lg"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            />
+            <motion.div
+              className="w-20 h-20 bgSlate-100 rounded-full"
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
             />
           </motion.div>
-        </motion.div>
-        <motion.div
-          variants={{ gridSquareVariants }}
-          className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
-        >
-          <motion.svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="w-1/2 stroke-amber-500 stroke-[0.5]"
+          <motion.div
+            variants={{ gridSquareVariants }}
+            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
           >
-            <motion.path
-              d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
-              variants={svgIconVariants}
-              initial="hidden"
-              animate="visible"
+            <motion.div
+              className="w-1/3 h-1/3 shadow-md bg-rose-400"
+              animate={{
+                scale: [1, 2, 2, 1],
+                rotate: [0, 90, 90, 0],
+                borderRadius: ["10%", "10%", "50%", "10%"],
+              }}
               transition={{
-                default: {
-                  duration: 2,
-                  ease: "easeInOut",
-                  delay: 1,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  repeatDelay: 1,
-                },
-                fill: {
-                  duration: 2,
-                  ease: "easeIn",
-                  delay: 2,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  repeatDelay: 1,
-                },
+                duration: 5,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatDelay: 1,
               }}
             />
-          </motion.svg>
-        </motion.div>
-      </motion.section>
-      <section className="flex flex-col gap-10 mb-10" ref={containerRef}>
-        <motion.h1
-          className="text-5xl tracking-wide text-slate-100 text-center"
-          animate={mainControls}
-          initial="hidden"
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ delay: 0.3 }}
-        >
-          Just Keep Scrolling
-        </motion.h1>
-        <motion.p
-          style={{ translateX: paragraphOneValue }}
-          className="text-slate-100 font-thin text-4xl w-1/2 mx-auto"
-        >
-          This is a basic framer motion animation on how to get up and running
-          with Framer Motion with some TailwindCSS
-        </motion.p>
-        <motion.p
-          style={{ translateX: paragraphTwoValue }}
-          className="text-slate-100 font-thin text-4xl w-1/2 mx-auto"
-        >
-          Have fun playing with Framer Motion. It is a ver powerful library,
-          when used properly. Add some life to your websites.
-        </motion.p>
-      </section>
+          </motion.div>
+          <motion.div
+            variants={{ gridSquareVariants }}
+            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+          >
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "#d1d5db",
+                color: "black",
+              }}
+              transition={{ bounceDamping: 10, bounceStiffness: 500 }}
+              className="bg-emerald-600 w-1/2 py-4  rounded-lg text-2xl text-gray-100 font-light tracking-wide"
+            >
+              Subscribe
+            </motion.button>
+          </motion.div>
+          <motion.div
+            variants={{ gridSquareVariants }}
+            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+          >
+            <motion.div
+              className="w-1/3 h-1/3 bg-orange-500 rounded-3xl cursor-grab"
+              drag
+              dragConstraints={{
+                top: -125,
+                right: 125,
+                bottom: 125,
+                left: -125,
+              }}
+              dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
+            />
+          </motion.div>
+          <motion.div
+            variants={{ gridSquareVariants }}
+            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+          >
+            <motion.div className="w-40 aspectSquare bg-gray-50/20 rounded-xl">
+              <motion.div
+                className="w-full bg-gray-400 rounded-xl h-full origin-bottom"
+                style={{ scaleY: completionProgress }}
+              />
+            </motion.div>
+          </motion.div>
+          <motion.div
+            variants={{ gridSquareVariants }}
+            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+          >
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-1/2 stroke-amber-500 stroke-[0.5]"
+            >
+              <motion.path
+                d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+                variants={svgIconVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{
+                  default: {
+                    duration: 2,
+                    ease: "easeInOut",
+                    delay: 1,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    repeatDelay: 1,
+                  },
+                  fill: {
+                    duration: 2,
+                    ease: "easeIn",
+                    delay: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    repeatDelay: 1,
+                  },
+                }}
+              />
+            </motion.svg>
+          </motion.div>
+        </motion.section>
+        <section className="flex flex-col gap-10 mb-10" ref={containerRef}>
+          <motion.h1
+            className="text-5xl tracking-wide textSlate-100 text-center"
+            animate={mainControls}
+            initial="hidden"
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ delay: 0.3 }}
+          >
+            Just Keep Scrolling
+          </motion.h1>
+          <motion.p
+            style={{ translateX: paragraphOneValue }}
+            className="text-white font-thin text-4xl w-1/2 mx-auto"
+          >
+            This is a basic framer motion animation on how to get up and running
+            with Framer Motion with some TailwindCSS
+          </motion.p>
+          <motion.p
+            style={{ translateX: paragraphTwoValue }}
+            className="textSlate-100 font-thin text-4xl w-1/2 mx-auto"
+          >
+            Have fun playing with Framer Motion. It is a ver powerful library,
+            when used properly. Add some life to your websites.
+          </motion.p>
+        </section>
+      </div>
 
-      <section className="flex gap-10">
+      <section className="flex gap-10 p-4">
         <div className="w-[50vw] h-[40vh] overflow-hidden flex rounded-[5px] justify-center items-center bg-[#BB08F7]">
           <motion.div
             variants={circleVariants}
@@ -251,8 +299,41 @@ const App = () => {
             ))}
           </motion.div>
         </div>
-        <motion.div className="w-[50vw] h-[40vh] bg-[#ff0088] rounded-[5px]"></motion.div>
+        <div className="w-[50vw] h-[40vh] overflow-hidden flex rounded-[5px] justify-center items-center bg-[#FF0088]">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1 }}
+            className="w-[20vw] h-[20vh] bg-[#793057] rounded-[5px]"
+          ></motion.div>
+        </div>
       </section>
+      <div className="">
+        <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+          <path x="10" y="40" fontSize="20" fontFamily="Arial" fill="pink">
+            Hello!
+          </path>
+          <text x="10" y="80" fontSize="20" fontFamily="Arial" fill="green">
+            This is Md. Farok Hossain,
+          </text>
+          <text x="10" y="120" fontSize="20" fontFamily="Arial" fill="orange">
+            I&apos;m a Junior Software Developer.
+          </text>
+        </svg>
+      </div>
+
+      {/* recorder animation  */}
+      <div>
+        <ul style={container}>
+          {order.map((backgroundColor) => (
+            <motion.li
+              key={backgroundColor}
+              layout
+              transition={spring}
+              style={{ ...item2, backgroundColor }}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
