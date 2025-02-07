@@ -302,25 +302,12 @@ const App = () => {
         <div className="w-[50vw] h-[40vh] overflow-hidden flex rounded-[5px] justify-center items-center bg-[#FF0088]">
           <motion.div
             animate={{ rotate: 360 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 5, repeat: Infinity }}
             className="w-[10vw] h-[20vh] bg-[#793057] rounded-[5px]"
           ></motion.div>
         </div>
       </section>
-      <div className="">
-        <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
-          <path x="10" y="40" fontSize="20" fontFamily="Arial" fill="pink">
-            Hello!
-          </path>
-          <text x="10" y="80" fontSize="20" fontFamily="Arial" fill="green">
-            This is Md. Farok Hossain,
-          </text>
-          <text x="10" y="120" fontSize="20" fontFamily="Arial" fill="orange">
-            I&apos;m a Junior Software Developer.
-          </text>
-        </svg>
-      </div>
-
+      
       {/* recorder animation  */}
       <div>
         <ul style={container}>
