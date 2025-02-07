@@ -315,29 +315,32 @@ const App = () => {
         </div>
       </section>
 
-      {/* recorder animation  */}
-      <div>
-        <ul style={container}>
-          {order.map((backgroundColor) => (
-            <motion.li
-              key={backgroundColor}
-              layout
-              transition={spring}
-              style={{ ...item2, backgroundColor }}
-            />
-          ))}
-        </ul>
+      <div className="flex justify-center items-center gap-16 my-10">
+        {/* recorder animation  */}
+        <div>
+          <ul style={container}>
+            {order.map((backgroundColor) => (
+              <motion.li
+                key={backgroundColor}
+                layout
+                transition={spring}
+                style={{ ...item2, backgroundColor }}
+              />
+            ))}
+          </ul>
+        </div>
+        <motion.div
+          className="flex"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            scale: { type: "spring", visualDuration: 2, bounce: 2 },
+          }}
+          style={ball}
+        ></motion.div>
       </div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          scale: { type: "spring", visualDuration: 2, bounce: 2 },
-        }}
-        style={ball}
-      ></motion.div>
     </div>
   );
 };
