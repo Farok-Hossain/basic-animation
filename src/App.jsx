@@ -1,4 +1,6 @@
 import {
+  AnimatePresence,
+  color,
   motion,
   useAnimation,
   useInView,
@@ -106,8 +108,35 @@ const box = {
   backgroundColor: "#9911ff",
 };
 
+const hideContainer = {
+  display: "flex",
+  flexDirection: "column",
+  width: 100,
+  height: 160,
+  position: "relative",
+};
+
+const hideBox = {
+  width: 100,
+  height: 100,
+  borderRadius: "10px",
+  backgroundColor: "#0cdcf7",
+};
+
+const hideButton = {
+  backgroundColor: "#0cdcf7",
+  borderRadius: "10px",
+  padding: "10px 20px",
+  color: "#0f1115",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  right: 0,
+};
+
 const App = () => {
   const [order, setOrder] = useState(initialOrder);
+  const [isVisible, setIsVisible] = useState(true);
   const { scrollYProgress: completionProgress } = useScroll();
 
   const containerRef = useRef(null);
@@ -353,6 +382,27 @@ const App = () => {
           whileTap={{ scale: 0.8 }}
           style={box}
         ></motion.div>
+        {/* hide button  */}
+        <div style={hideContainer}>
+          <AnimatePresence initial={false}>
+            {isVisible ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                style={hideBox}
+                key="box"
+              />
+            ) : null}
+          </AnimatePresence>
+          <motion.button
+            style={hideButton}
+            onClick={() => setIsVisible(!isVisible)}
+            whileTap={{ y: 1 }}
+          >
+            {isVisible ? "Hide" : "Show"}
+          </motion.button>
+        </div>
       </div>
     </div>
   );
