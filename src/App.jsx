@@ -131,31 +131,31 @@ const App = () => {
     <div>
       <div className="flex flex-col gap-10 overflow-x-hidden">
         <motion.section
-          variants={{ gridContainerVariants }}
+          variants={gridContainerVariants}
           initial="hidden"
           animate="show"
           className="grid grid-cols-3 p-10 gap-10"
         >
           <motion.div
             variants={{ gridSquareVariants }}
-            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+            className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.div
-              className="w-20 h-20 bgSlate-100 rounded-lg"
+              className="w-20 h-20 bg-stone-100 rounded-lg"
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             />
             <motion.div
-              className="w-20 h-20 bgSlate-100 rounded-full"
+              className="w-20 h-20 bg-stone-100 rounded-full"
               initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
             />
           </motion.div>
           <motion.div
-            variants={{ gridSquareVariants }}
-            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+            variants={gridSquareVariants}
+            className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.div
               className="w-1/3 h-1/3 shadow-md bg-rose-400"
@@ -173,8 +173,8 @@ const App = () => {
             />
           </motion.div>
           <motion.div
-            variants={{ gridSquareVariants }}
-            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+            variants={ gridSquareVariants }
+            className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.button
               whileTap={{ scale: 0.9 }}
@@ -183,7 +183,7 @@ const App = () => {
                 backgroundColor: "#d1d5db",
                 color: "black",
               }}
-              transition={{ bounceDamping: 10, bounceStiffness: 500 }}
+              transition={{ bounceDamping: 10, bounceStiffness: 600 }}
               className="bg-emerald-600 w-1/2 py-4  rounded-lg text-2xl text-gray-100 font-light tracking-wide"
             >
               Subscribe
@@ -191,7 +191,7 @@ const App = () => {
           </motion.div>
           <motion.div
             variants={{ gridSquareVariants }}
-            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+            className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.div
               className="w-1/3 h-1/3 bg-orange-500 rounded-3xl cursor-grab"
@@ -206,10 +206,10 @@ const App = () => {
             />
           </motion.div>
           <motion.div
-            variants={{ gridSquareVariants }}
-            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+            variants={ gridSquareVariants }
+            className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
-            <motion.div className="w-40 aspectSquare bg-gray-50/20 rounded-xl">
+            <motion.div className="w-40 aspect-square bg-gray-50/20 rounded-xl">
               <motion.div
                 className="w-full bg-gray-400 rounded-xl h-full origin-bottom"
                 style={{ scaleY: completionProgress }}
@@ -217,8 +217,8 @@ const App = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            variants={{ gridSquareVariants }}
-            className="bgSlate-800 aspectSquare rounded-lg justify-center flex items-center gap-10"
+            variants={ gridSquareVariants }
+            className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +254,7 @@ const App = () => {
         </motion.section>
         <section className="flex flex-col gap-10 mb-10" ref={containerRef}>
           <motion.h1
-            className="text-5xl tracking-wide textSlate-100 text-center"
+            className="text-5xl tracking-wide text-slate-100 text-center"
             animate={mainControls}
             initial="hidden"
             variants={{
@@ -274,7 +274,7 @@ const App = () => {
           </motion.p>
           <motion.p
             style={{ translateX: paragraphTwoValue }}
-            className="textSlate-100 font-thin text-4xl w-1/2 mx-auto"
+            className="text-slate-100 font-thin text-4xl w-1/2 mx-auto"
           >
             Have fun playing with Framer Motion. It is a ver powerful library,
             when used properly. Add some life to your websites.
@@ -303,7 +303,7 @@ const App = () => {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1 }}
-            className="w-[20vw] h-[20vh] bg-[#793057] rounded-[5px]"
+            className="w-[10vw] h-[20vh] bg-[#793057] rounded-[5px]"
           ></motion.div>
         </div>
       </section>
