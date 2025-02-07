@@ -91,6 +91,13 @@ const item2 = {
   borderRadius: "10px",
 };
 
+const ball = {
+  width: 100,
+  height: 100,
+  borderRadius: "50%",
+  backgroundColor: "#dd00ee",
+};
+
 const App = () => {
   const [order, setOrder] = useState(initialOrder);
   const { scrollYProgress: completionProgress } = useScroll();
@@ -173,7 +180,7 @@ const App = () => {
             />
           </motion.div>
           <motion.div
-            variants={ gridSquareVariants }
+            variants={gridSquareVariants}
             className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.button
@@ -206,7 +213,7 @@ const App = () => {
             />
           </motion.div>
           <motion.div
-            variants={ gridSquareVariants }
+            variants={gridSquareVariants}
             className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.div className="w-40 aspect-square bg-gray-50/20 rounded-xl">
@@ -217,7 +224,7 @@ const App = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            variants={ gridSquareVariants }
+            variants={gridSquareVariants}
             className="bg-slate-800 aspect-square rounded-lg justify-center flex items-center gap-10"
           >
             <motion.svg
@@ -307,7 +314,7 @@ const App = () => {
           ></motion.div>
         </div>
       </section>
-      
+
       {/* recorder animation  */}
       <div>
         <ul style={container}>
@@ -321,6 +328,16 @@ const App = () => {
           ))}
         </ul>
       </div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          scale: { type: "spring", visualDuration: 2, bounce: 2 },
+        }}
+        style={ball}
+      ></motion.div>
     </div>
   );
 };
