@@ -5,6 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { b } from "framer-motion/client";
 import { useState } from "react";
 import { useEffect, useRef } from "react";
 
@@ -96,6 +97,13 @@ const ball = {
   height: 100,
   borderRadius: "50%",
   backgroundColor: "#dd00ee",
+};
+
+const box = {
+  width: 100,
+  height: 100,
+  borderRadius: 5,
+  backgroundColor: "#9911ff",
 };
 
 const App = () => {
@@ -339,6 +347,11 @@ const App = () => {
             scale: { type: "spring", visualDuration: 2, bounce: 2 },
           }}
           style={ball}
+        ></motion.div>
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          style={box}
         ></motion.div>
       </div>
     </div>
