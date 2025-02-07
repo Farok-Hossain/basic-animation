@@ -1,15 +1,16 @@
 import {
   AnimatePresence,
-  color,
   motion,
   useAnimation,
   useInView,
   useScroll,
   useTransform,
 } from "framer-motion";
-import { b } from "framer-motion/client";
+
 import { useState } from "react";
 import { useEffect, useRef } from "react";
+import PathDrawing from "./PathDrawing";
+import Text from "./Text";
 
 const gridContainerVariants = {
   hidden: { opacity: 0 },
@@ -382,6 +383,7 @@ const App = () => {
           whileTap={{ scale: 0.8 }}
           style={box}
         ></motion.div>
+
         {/* hide button  */}
         <div style={hideContainer}>
           <AnimatePresence initial={false}>
@@ -404,6 +406,8 @@ const App = () => {
           </motion.button>
         </div>
       </div>
+      <Text />
+      <PathDrawing />
     </div>
   );
 };
