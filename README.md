@@ -1,1 +1,1 @@
-basic animation by framer motion
+animation by framer motion
