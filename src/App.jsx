@@ -42,7 +42,7 @@ const circleVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      delayChildren: 0.3,
+      delayChildren: 0.35,
       staggerChildren: 0.2,
     },
   },
