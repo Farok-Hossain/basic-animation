@@ -62,7 +62,7 @@ const initialOrder = ["#ff0088", "#dd00ee", "#9911ff", "#0d63f8"];
  * ==============   Utils   ================
  */
 function shuffle([...array]) {
-  return array.sort(() => Math.random() - 0.5);
+  return array.sort(() => Math.random() - 0.6);
 }
 
 /**
@@ -71,7 +71,6 @@ function shuffle([...array]) {
 
 const spring = {
   type: "spring",
-  damping: 20,
   stiffness: 300,
 };
 
