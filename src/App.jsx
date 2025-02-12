@@ -95,8 +95,8 @@ const item2 = {
 };
 
 const ball = {
-  width: 100,
-  height: 100,
+  width: 110,
+  height: 110,
   borderRadius: "50%",
   backgroundColor: "#dd00ee",
 };
