@@ -320,8 +320,8 @@ const App = () => {
             style={{ translateX: paragraphTwoValue }}
             className="text-slate-100 font-thin text-4xl w-1/2 mx-auto"
           >
-            Have fun playing with Framer Motion. It is a ver powerful library,
-            when used properly. Add some life to your websites.
+            Have some fun playing with Framer Motion. It is a ver powerful
+            library, when used properly. Add some life to your websites.
           </motion.p>
         </section>
       </div>
