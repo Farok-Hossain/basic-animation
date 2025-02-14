@@ -327,7 +327,7 @@ const App = () => {
       </div>
 
       <section className="flex gap-10 p-4">
-        <div className="w-[50vw] h-[40vh] overflow-hidden flex rounded-[5px] justify-center items-center bg-[#BB08F7]">
+        <div className="w-[50vw] h-[40vh] overflow-hidden flex rounded-[6px] justify-center items-center bg-[#BB08F7]">
           <motion.div
             variants={circleVariants}
             initial="hidden"
